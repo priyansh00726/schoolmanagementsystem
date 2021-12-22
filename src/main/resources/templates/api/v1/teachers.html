@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Teacher Management System</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+    <!-- Brand -->
+    <a class="navbar-brand" href="#">Teacher Management System</a>
+
+    <!-- Toggler/collapsibe Button -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Navbar links -->
+    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/api/v1/students}">Manage Students</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/api/v1/teachers}">Manage Teachers</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<br>
+<div class="container">
+    <div class="row">
+        <h1 style="margin:10px 10px">List Teachers</h1>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-lg-3">
+            <a th:href="@{/api/v1/teachers/new}" class="btn btn-primary btn-sm mb-3">Add Teacher</a>
+        </div>
+    </div>
+    <table class="table table-striped table-bordered">
+        <thead class="table-dark">
+        <tr>
+            <th>Teacher First Name</th>
+            <th>Teacher Last Name</th>
+            <th>Teacher Email</th>
+<!--            <th>Teacher Mobile No.</th>-->
+<!--            <th>Class Teacher</th>-->
+<!--            <th>Teacher Class</th>-->
+<!--            <th>Salary</th>-->
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="teacher: ${teachers}">
+<!--            <td th:text=${teacher.f_name}></td>-->
+<!--            <td th:text=${teacher.l_name}></td>-->
+<!--            <td th:text=${teacher.email}></td>-->
+<!--            <td th:text=${teacher.mobile}></td>-->
+<!--            <td th:text="${teacher.isClassTeacher} ? 'YES' : 'NO'"></td>-->
+<!--            <td th:text="${teacher.isClassTeacher} ? ${teacher.classNum} : 'N/A'"></td>-->
+<!--            <td th:text=${teacher.salary}></td>-->
+<!--            <td>-->
+<!--                <a th:href="@{/api/v1/teachers/edit/{id}(id=${teacher.getId()})}"-->
+<!--                   class="btn btn-primary">Update</a>-->
+<!--                <a th:href="@{/api/v1/teachers/{id}(id=${teacher.getId()})}"-->
+<!--                   class="btn btn-danger">Delete</a>-->
+<!--            </td>-->
+            <td th:text=${teacher.f_name}></td>
+            <td th:text=${teacher.l_name}></td>
+            <td th:text=${teacher.email}></td>
+            <td>
+                <a th:href="@{/api/v1/teachers/view/{id}(id=${teacher.getId()})}"
+                   class="btn btn-primary">View</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

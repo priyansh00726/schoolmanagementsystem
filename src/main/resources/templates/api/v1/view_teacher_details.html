@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Teacher Management System</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
+    <style>
+        label {
+            width: 225px;
+            padding: 5px;
+            background-color: #e3d6b1;
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+    <!-- Brand -->
+    <a class="navbar-brand" href="#">Teacher Management System</a>
+
+    <!-- Toggler/collapsibe Button -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Navbar links -->
+    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/api/v1/students}">Manage Students</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/api/v1/teachers}">Manage Teachers</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<br>
+<div class="container">
+    <div style="flex-direction: column;" class="row">
+        <h1 style="text-align:center;" th:object="${teacher}" th:text="${teacher.f_name} + ' Details'"></h1>
+    </div>
+    <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
+            <div class="card-body">
+                <form th:action="@{/api/v1/teachers}" th:object="${teacher}" method="GET">
+                    <div class="form-group">
+                        <label>First Name</label>
+                        <label th:text=${teacher.f_name}></label>
+                    </div>
+                    <div class="form-group">
+                        <label>Last Name</label>
+                        <label th:text=${teacher.l_name}></label>
+                    </div>
+                    <div class="form-group">
+                        <label>Email ID</label>
+                        <label th:text=${teacher.email}></label>
+                    </div>
+                    <div class="form-group">
+                        <label>Mobile No. </label>
+                        <label th:text=${teacher.mobile}></label>
+                    </div>
+                    <div class="form-group">
+                        <label>Is Class Teacher</label>
+                        <label th:text="${teacher.isClassTeacher} ? 'YES' : 'NO'"></label>
+                    </div>
+                    <div class="form-group">
+                        <label>Class</label>
+                        <label th:text="${teacher.isClassTeacher} ? ${teacher.classNum} : 'N/A'"></label>
+                    </div>
+                    <div class="form-group">
+                        <label>Salary</label>
+                        <label th:text=${teacher.salary}></label>
+                    </div>
+                    <div class="footer-body">
+                        <a th:href="@{/api/v1/teachers/edit/{id}(id=${teacher.getId()})}"
+                           class="btn btn-primary">Update</a>
+                        <a th:href="@{/api/v1/teachers/{id}(id=${teacher.getId()})}"
+                           class="btn btn-danger">Delete</a>
+                        <a th:href="@{/api/v1/teachers}"
+                           class="btn btn-primary">Back</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+
+</div>
+</body>
+</html>

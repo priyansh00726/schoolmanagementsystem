@@ -1,0 +1,11 @@
+app:
+  datasource:
+    jdbc-url: jdbc:mysql://localhost:3306/sms
+    username: xxxxxxxx
+    password: xxxxxxxx
+    pool-size: 30
+
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: update
