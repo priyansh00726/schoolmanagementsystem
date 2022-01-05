@@ -1,8 +1,8 @@
 app:
   datasource:
     jdbc-url: jdbc:mysql://localhost:3306/sms
-    username: xxxxxxxx
-    password: xxxxxxxx
+    username: priyansh
+    password: priyansh123
     pool-size: 30
 
 spring:

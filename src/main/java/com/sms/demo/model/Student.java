@@ -10,7 +10,7 @@ public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 //    @Column(name = "id")
-    private Long enroll_no;
+    private Long id;
     @Column(name = "firstName", nullable = false)
     private String f_name;
     @Column(name = "lastName")
@@ -35,12 +35,12 @@ public class Student {
     }
 
 
-    public Long getEnroll_no() {
-        return enroll_no;
+    public Long getId() {
+        return id;
     }
 
-    public void setEnroll_no(Long enroll_no) {
-        this.enroll_no = enroll_no;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getF_name() {
