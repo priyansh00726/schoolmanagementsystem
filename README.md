@@ -1,4 +1,4 @@
-#School Management System
+# School Management System
 
 Manages records of Teachers and Students and the whole record book of a School.
 
