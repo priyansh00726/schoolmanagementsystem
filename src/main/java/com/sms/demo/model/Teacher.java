@@ -19,7 +19,7 @@ public class Teacher {
     @Column(name = "classTeacher")
     private boolean isClassTeacher;
     @Column(name = "classNum")
-    private int classNum;
+    private int class_num;
     @Column(name = "salary")
     private Double salary;
 
@@ -39,7 +39,7 @@ public class Teacher {
         this.email = email;
         this.mobile = mobile;
         this.isClassTeacher = isClassTeacher;
-        this.classNum = classNum;
+        this.class_num = classNum;
         this.salary = salary;
     }
 
@@ -91,12 +91,12 @@ public class Teacher {
         isClassTeacher = classTeacher;
     }
 
-    public int getClassNum() {
-        return classNum;
+    public int getClass_num() {
+        return class_num;
     }
 
-    public void setClassNum(int classNum) {
-        this.classNum = classNum;
+    public void setClass_num(int class_num) {
+        this.class_num = class_num;
     }
 
     public Double getSalary() {

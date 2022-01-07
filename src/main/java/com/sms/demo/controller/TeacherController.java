@@ -1,11 +1,10 @@
 package com.sms.demo.controller;
 
 import com.sms.demo.model.Teacher;
+import com.sms.demo.model.Teacher;
 import com.sms.demo.service.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -82,14 +81,14 @@ public class TeacherController {
 
     @GetMapping("/teachers")
     public List<Teacher> getAllTeachers() {
+        System.out.println("GET REQUEST");
         return service.getAllTeachers();
     }
 
     @PostMapping("/teachers")
     public ResponseEntity<String> addNewTeacher(@RequestBody Teacher teacher) {
         try {
-            if (teacher.getClassNum() != 0) teacher.setClassTeacher(true);
-            System.out.println(teacher);
+            System.out.println("POST REQUEST");
             service.addNewTeacher(teacher);
             return ResponseEntity.ok(teacher.getF_name() + " is added as teacher.");
         } catch (Exception e) {
@@ -98,23 +97,31 @@ public class TeacherController {
         }
     }
 
-    @GetMapping("/teachers/edit/{id}")
+    @GetMapping("/teachers/{id}")
     public ResponseEntity<Teacher> getTeacherById(@PathVariable("id") Long id) {
+        System.out.println("GET REQUEST FOR ID");
         Teacher teacher = service.getTeacherById(id);
         return ResponseEntity.ok(teacher);
     }
 
     @PutMapping("/teachers/{id}")
-    public void editTeacherDetails(@PathVariable("id") Long id, @RequestBody Teacher teacher) {
-        if (teacher.getClassNum() != 0) teacher.setClassTeacher(true);
-        service.updateTeacherDetails(teacher);
+    public ResponseEntity<String> editTeacherDetails(@PathVariable("id") Long id, @RequestBody Teacher teacher) {
+        try {
+            System.out.println("PUT REQUEST " + teacher.getF_name());
+            service.updateTeacherDetails(teacher);
+            return ResponseEntity.ok("Details of " + teacher.getF_name() + " are updated.");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.badRequest().body("Teacher details can't be modified.");
+        }
     }
 
     @DeleteMapping("/teachers/{id}")
     public ResponseEntity<Map<String, Boolean>> deleteTeacherRecord(@PathVariable("id") Long id) {
+        System.out.println("DELETE REQUEST");
         service.deleteTeacherRecord(service.getTeacherById(id));
         Map<String, Boolean> map = new HashMap<>();
-        map.put("deleted", true);
+        map.put("Teacher deleted", true);
         return ResponseEntity.ok(map);
     }
 }

@@ -8,19 +8,26 @@ export const getAllTeachers = async () => {
   return res;
 };
 
-export const postNewTeacher = teacher => {
-  return axios.post(APP_URL, teacher);
+export const postNewTeacher = async teacher => {
+  const data = await axios.post(APP_URL, teacher);
+  const res = data.data;
+  return res;
 };
 
-const getTeacherById = id => {
-  return axios.get(APP_URL + "/" + id);
+export const getTeacherById = async id => {
+  const data = await axios.get(APP_URL + "/" + String(id));
+  const res = data.data;
+  return res;
 };
 
-export const editTeacherDetails = id => {
-  let teacher = getTeacherById(id);
-  return axios.put(APP_URL + "/" + id, teacher);
+export const editTeacherDetails = async (id, teacher) => {
+  const data = await axios.put(APP_URL + "/" + String(id), teacher);
+  const res = data.data;
+  return res;
 };
 
-export const deleteTeacher = id => {
-  return axios.delete(APP_URL + "/" + id);
+export const deleteTeacher = async id => {
+  const data = await axios.delete(APP_URL + "/" + String(id));
+  const res = data.data;
+  return res;
 };

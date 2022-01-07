@@ -79,12 +79,14 @@ public class StudentController {
 
     @GetMapping("/students")
     public List<Student> getAllStudents() {
+        System.out.println("GET REQUEST");
         return service.getAllStudents();
     }
 
     @PostMapping("/students")
     public ResponseEntity<String> addNewStudent(@RequestBody Student student) {
         try {
+            System.out.println("POST REQUEST");
             service.saveStudent(student);
             return ResponseEntity.ok(student.getF_name() + " is added as student.");
         } catch (Exception e) {
@@ -93,22 +95,31 @@ public class StudentController {
         }
     }
 
-    @GetMapping("/students/edit/{id}")
+    @GetMapping("/students/{id}")
     public ResponseEntity<Student> getStudentById(@PathVariable("id") Long id) {
+        System.out.println("GET REQUEST FOR ID");
         Student student = service.getStudentById(id);
         return ResponseEntity.ok(student);
     }
 
     @PutMapping("/students/{id}")
-    public void editStudentDetails(@PathVariable("id") Long id, @RequestBody Student student) {
-        service.updateStudent(student);
+    public ResponseEntity<String> editStudentDetails(@PathVariable("id") Long id, @RequestBody Student student) {
+        try {
+            System.out.println("PUT REQUEST " + student.getF_name());
+            service.updateStudent(student);
+            return ResponseEntity.ok("Details of " + student.getF_name() + " are updated.");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.badRequest().body("Student details can't be modified.");
+        }
     }
 
     @DeleteMapping("/students/{id}")
     public ResponseEntity<Map<String, Boolean>> deleteStudentRecord(@PathVariable("id") Long id) {
+        System.out.println("DELETE REQUEST");
         service.deleteStudent(service.getStudentById(id));
         Map<String, Boolean> map = new HashMap<>();
-        map.put("deleted", true);
+        map.put("Student deleted", true);
         return ResponseEntity.ok(map);
     }
 }
